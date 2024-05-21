@@ -1,0 +1,26 @@
+{
+    "name": "tsm-helse-arbeidsforhold",
+    "private": true,
+    "packageManager": "yarn@4.2.2",
+    "engines": {
+        "node": "20"
+    },
+    "workspaces": [
+        "apps/*",
+        "packages/*"
+    ],
+    "scripts": {
+        "build": "turbo build",
+        "dev": "turbo dev",
+        "lint": "turbo lint",
+        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    },
+    "devDependencies": {
+        "@navikt/eslint-config-teamsykmelding": "^6.2.0",
+        "@repo/eslint-config": "*",
+        "@repo/typescript-config": "*",
+        "prettier": "^3.2.5",
+        "turbo": "^1.13.3"
+    },
+    "prettier": "@navikt/eslint-config-teamsykmelding/prettier"
+}
