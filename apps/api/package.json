@@ -9,6 +9,7 @@
         "build": "bun build --outdir dist src/index.ts"
     },
     "dependencies": {
+        "@elysiajs/swagger": "^1.0.5",
         "elysia": "^1.0.20"
     },
     "devDependencies": {
