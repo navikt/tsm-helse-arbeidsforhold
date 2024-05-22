@@ -6,8 +6,6 @@ COPY package.json /app/
 COPY .next/standalone/node_modules /app/node_modules
 COPY .next/standalone/apps/standalone /app/
 COPY .next/static /app/.next/static
-COPY public /app/public/
-
 
 EXPOSE 3000
 

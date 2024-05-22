@@ -1,25 +1,20 @@
+import { cn } from './tw'
+
 export function Card({
     className,
     title,
     children,
-    href,
 }: {
     className?: string
     title: string
     children: React.ReactNode
-    href: string
 }): JSX.Element {
     return (
-        <a
-            className={className}
-            href={`${href}?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"`}
-            rel="noopener noreferrer"
-            target="_blank"
-        >
+        <div className={cn('border-2 mt-8 border-border-subtle rounded m-4', className)}>
             <h2>
-                {title} <span>-&gt;</span>
+                Ayy {title} <span>-&gt;</span>
             </h2>
             <p>{children}</p>
-        </a>
+        </div>
     )
 }
