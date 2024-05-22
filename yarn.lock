@@ -628,6 +628,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@sinclair/typebox@npm:^0.32.15":
+  version: 0.32.30
+  resolution: "@sinclair/typebox@npm:0.32.30"
+  checksum: 10c0/0140e159d2a1ed8e78ac74730cbd7cfeae6565239a70130a937bf51006951f40d3e758192cd11241bb9b03d298195855de0713d1c8041ec6838fd7fcd02d4ef9
+  languageName: node
+  linkType: hard
+
 "@swc/counter@npm:^0.1.3":
   version: 0.1.3
   resolution: "@swc/counter@npm:0.1.3"
@@ -723,6 +730,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/bun@npm:latest":
+  version: 1.1.3
+  resolution: "@types/bun@npm:1.1.3"
+  dependencies:
+    bun-types: "npm:1.1.9"
+  checksum: 10c0/0edb9d0881469440042025337ca66d4e2a1e7046d5f5d6c35e8a3bd12e2f735cfab7fb308f9f105d55d8e19d09b9793051808bf86a959fc9471a12a98e4cc0e6
+  languageName: node
+  linkType: hard
+
 "@types/eslint@npm:^8.56.10":
   version: 8.56.10
   resolution: "@types/eslint@npm:8.56.10"
@@ -781,7 +797,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^20.12.12":
+"@types/node@npm:*, @types/node@npm:^20.12.12, @types/node@npm:~20.12.8":
   version: 20.12.12
   resolution: "@types/node@npm:20.12.12"
   dependencies:
@@ -843,6 +859,15 @@ __metadata:
   version: 1.4.6
   resolution: "@types/tinycolor2@npm:1.4.6"
   checksum: 10c0/922020c3326460e9d8502c8a98f80db69f06fd14e07fe5a48e8ffe66175762298a9bd51263f2a0c9a40632886a74975a3ff79396defcdbeac0dc176e3e5056e8
+  languageName: node
+  linkType: hard
+
+"@types/ws@npm:~8.5.10":
+  version: 8.5.10
+  resolution: "@types/ws@npm:8.5.10"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/e9af279b984c4a04ab53295a40aa95c3e9685f04888df5c6920860d1dd073fcc57c7bd33578a04b285b2c655a0b52258d34bee0a20569dca8defb8393e1e5d29
   languageName: node
   linkType: hard
 
@@ -1307,8 +1332,12 @@ __metadata:
   resolution: "api@workspace:apps/api"
   dependencies:
     "@navikt/eslint-config-teamsykmelding": "npm:^6.2.0"
+    "@types/bun": "npm:latest"
+    elysia: "npm:^1.0.20"
     eslint: "npm:^8.57.0"
     eslint-plugin-import: "npm:^2.29.1"
+  peerDependencies:
+    typescript: ^5.0.0
   languageName: unknown
   linkType: soft
 
@@ -1591,6 +1620,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"bun-types@npm:1.1.9":
+  version: 1.1.9
+  resolution: "bun-types@npm:1.1.9"
+  dependencies:
+    "@types/node": "npm:~20.12.8"
+    "@types/ws": "npm:~8.5.10"
+  checksum: 10c0/4950117accf29dd620df16b4b4cfcb88708a27a7d00f234c8457fe6163c06dc4b8005647390abd859bbcd1acee63826c1069944e83f108c713b13a40b9efce21
+  languageName: node
+  linkType: hard
+
 "busboy@npm:1.6.0":
   version: 1.6.0
   resolution: "busboy@npm:1.6.0"
@@ -1821,6 +1860,13 @@ __metadata:
   version: 2.0.0
   resolution: "convert-source-map@npm:2.0.0"
   checksum: 10c0/8f2f7a27a1a011cc6cc88cc4da2d7d0cfa5ee0369508baae3d98c260bb3ac520691464e5bbe4ae7cdf09860c1d69ecc6f70c63c6e7c7f7e3f18ec08484dc7d9b
+  languageName: node
+  linkType: hard
+
+"cookie@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "cookie@npm:0.6.0"
+  checksum: 10c0/f2318b31af7a31b4ddb4a678d024514df5e705f9be5909a192d7f116cfb6d45cbacf96a473fa733faa95050e7cff26e7832bb3ef94751592f1387b71c8956686
   languageName: node
   linkType: hard
 
@@ -2078,6 +2124,29 @@ __metadata:
   version: 1.4.776
   resolution: "electron-to-chromium@npm:1.4.776"
   checksum: 10c0/6bec4c2d17058ffead3b769c908c05c735e2f96014c19d90472863cff03f23f16b60e25fbaf53ccec1e12999fba98eeed88fbcfdd5e347d5aff33ed06c27538e
+  languageName: node
+  linkType: hard
+
+"elysia@npm:^1.0.20":
+  version: 1.0.20
+  resolution: "elysia@npm:1.0.20"
+  dependencies:
+    "@sinclair/typebox": "npm:^0.32.15"
+    cookie: "npm:^0.6.0"
+    eventemitter3: "npm:^5.0.1"
+    fast-decode-uri-component: "npm:^1.0.1"
+    fast-querystring: "npm:^1.1.2"
+    openapi-types: "npm:^12.1.3"
+  peerDependencies:
+    "@sinclair/typebox": ">= 0.31.0"
+    openapi-types: ">= 12.0.0"
+    typescript: ">= 5.0.0"
+  peerDependenciesMeta:
+    openapi-types:
+      optional: true
+    typescript:
+      optional: true
+  checksum: 10c0/03e35c517ac260c4e1207c507479c28326865a6f946a53c87b8b174d0475d8412699268254ef5493ab1d9b782d8212384e68a0b5dc68b825b1ed17288ffa91ec
   languageName: node
   linkType: hard
 
@@ -2716,6 +2785,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eventemitter3@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "eventemitter3@npm:5.0.1"
+  checksum: 10c0/4ba5c00c506e6c786b4d6262cfbce90ddc14c10d4667e5c83ae993c9de88aa856033994dd2b35b83e8dc1170e224e66a319fa80adc4c32adcd2379bbc75da814
+  languageName: node
+  linkType: hard
+
 "execa@npm:5.1.1":
   version: 5.1.1
   resolution: "execa@npm:5.1.1"
@@ -2741,6 +2817,13 @@ __metadata:
     iconv-lite: "npm:^0.4.24"
     tmp: "npm:^0.0.33"
   checksum: 10c0/c98f1ba3efdfa3c561db4447ff366a6adb5c1e2581462522c56a18bf90dfe4da382f9cd1feee3e330108c3595a854b218272539f311ba1b3298f841eb0fbf339
+  languageName: node
+  linkType: hard
+
+"fast-decode-uri-component@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "fast-decode-uri-component@npm:1.0.1"
+  checksum: 10c0/039d50c2e99d64f999c3f2126c23fbf75a04a4117e218a149ca0b1d2aeb8c834b7b19d643b9d35d4eabce357189a6a94085f78cf48869e6e26cc59b036284bc3
   languageName: node
   linkType: hard
 
@@ -2782,6 +2865,15 @@ __metadata:
   version: 2.0.6
   resolution: "fast-levenshtein@npm:2.0.6"
   checksum: 10c0/111972b37338bcb88f7d9e2c5907862c280ebf4234433b95bc611e518d192ccb2d38119c4ac86e26b668d75f7f3894f4ff5c4982899afced7ca78633b08287c4
+  languageName: node
+  linkType: hard
+
+"fast-querystring@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "fast-querystring@npm:1.1.2"
+  dependencies:
+    fast-decode-uri-component: "npm:^1.0.1"
+  checksum: 10c0/e8223273a9b199722f760f5a047a77ad049a14bd444b821502cb8218f5925e3a5fffb56b64389bca73ab2ac6f1aa7aebbe4e203e5f6e53ff5978de97c0fde4e3
   languageName: node
   linkType: hard
 
@@ -4428,6 +4520,13 @@ __metadata:
   dependencies:
     mimic-fn: "npm:^2.1.0"
   checksum: 10c0/ffcef6fbb2692c3c40749f31ea2e22677a876daea92959b8a80b521d95cca7a668c884d8b2045d1d8ee7d56796aa405c405462af112a1477594cc63531baeb8f
+  languageName: node
+  linkType: hard
+
+"openapi-types@npm:^12.1.3":
+  version: 12.1.3
+  resolution: "openapi-types@npm:12.1.3"
+  checksum: 10c0/4ad4eb91ea834c237edfa6ab31394e87e00c888fc2918009763389c00d02342345195d6f302d61c3fd807f17723cd48df29b47b538b68375b3827b3758cd520f
   languageName: node
   linkType: hard
 

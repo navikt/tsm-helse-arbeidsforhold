@@ -1,14 +1,24 @@
 {
     "name": "api",
     "version": "1.0.0",
+    "type": "module",
     "private": true,
     "scripts": {
-        "lint": "eslint src/**/*.ts"
+        "dev": "PORT=5000 bun run --watch src/index.ts",
+        "lint": "eslint src/**/*.ts",
+        "build": "bun build --outdir dist src/index.ts"
+    },
+    "dependencies": {
+        "elysia": "^1.0.20"
     },
     "devDependencies": {
         "@navikt/eslint-config-teamsykmelding": "^6.2.0",
+        "@types/bun": "latest",
         "eslint": "^8.57.0",
         "eslint-plugin-import": "^2.29.1"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
     },
     "eslintConfig": {
         "root": true,

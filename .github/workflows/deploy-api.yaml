@@ -1,0 +1,53 @@
+name: deploy api
+on: push
+
+env:
+  NPM_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+
+permissions:
+  packages: 'write'
+  contents: 'read'
+  id-token: 'write'
+
+jobs:
+  build-and-publish:
+    name: Bygg, test og push Docker image
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.docker-build-push.outputs.image }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enable Corepack
+        run: corepack enable
+      - uses: oven-sh/setup-bun@v1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+      - run: yarn
+      - run: yarn build
+        working-directory: apps/api
+      - name: Push docker image to GAR
+        uses: nais/docker-build-push@v0
+        id: docker-build-push
+        with:
+          dockerfile: apps/api/Dockerfile
+          docker_context: apps/api
+          team: tsm
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+
+  deploy-to-dev-gcp:
+    if: github.ref == 'refs/heads/main'
+    name: Deploy to dev
+    environment:
+      name: dev
+    needs: [build-and-publish]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: nais/deploy/actions/deploy@v2
+        env:
+          CLUSTER: dev-gcp
+          RESOURCE: apps/api/nais/nais-dev.yaml
+          VAR: image=${{ needs.build-and-publish.outputs.image }}

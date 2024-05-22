@@ -1,0 +1,29 @@
+apiVersion: 'nais.io/v1alpha1'
+kind: 'Application'
+metadata:
+  name: helse-arbeidsforhold-api
+  namespace: tsm
+  labels:
+    team: tsm
+spec:
+  image: {{image}}
+  replicas:
+    min: 1
+    max: 2
+    cpuThresholdPercentage: 90
+  port: 3000
+  kafka:
+    pool: nav-dev
+  liveness:
+    path: /internal/is_alive
+    initialDelay: 10
+  readiness:
+    path: /internal/is_ready
+    initialDelay: 30
+  resources:
+    limits:
+      cpu: 500m
+      memory: 256Mi
+    requests:
+      cpu: 150m
+      memory: 150Mi
