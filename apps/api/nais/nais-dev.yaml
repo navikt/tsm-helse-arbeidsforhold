@@ -7,11 +7,11 @@ metadata:
     team: tsm
 spec:
   image: {{image}}
+  port: 3000
   replicas:
     min: 1
     max: 2
     cpuThresholdPercentage: 90
-  port: 3000
   kafka:
     pool: nav-dev
   liveness:
@@ -27,3 +27,8 @@ spec:
     requests:
       cpu: 150m
       memory: 150Mi
+  accessPolicy:
+    inbound:
+      rules:
+        - application: helse-arbeidsforhold-fihr
+        - application: helse-arbeidsforhold-standalone
