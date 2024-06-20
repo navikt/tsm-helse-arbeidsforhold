@@ -20,7 +20,7 @@
         "@repo/eslint-config": "*",
         "@repo/typescript-config": "*",
         "prettier": "^3.2.5",
-        "turbo": "^1.13.3"
+        "turbo": "^2.0.4"
     },
     "prettier": "@navikt/eslint-config-teamsykmelding/prettier"
 }
