@@ -12,6 +12,8 @@ spec:
     min: 1
     max: 2
     cpuThresholdPercentage: 50
+  ingresses:
+    - https://helse-arbeidsforhold.ekstern.dev.nav.no
   resources:
     limits:
       cpu: 500m
