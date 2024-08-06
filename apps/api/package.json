@@ -9,11 +9,11 @@
         "build": "bun build --outdir dist src/index.ts"
     },
     "dependencies": {
-        "@elysiajs/swagger": "^1.0.5",
-        "elysia": "^1.0.20"
+        "@elysiajs/swagger": "^1.1.0",
+        "elysia": "^1.1.5"
     },
     "devDependencies": {
-        "@navikt/eslint-config-teamsykmelding": "^6.2.0",
+        "@navikt/eslint-config-teamsykmelding": "^6.3.0",
         "@types/bun": "latest",
         "eslint": "^8.57.0",
         "eslint-plugin-import": "^2.29.1"
