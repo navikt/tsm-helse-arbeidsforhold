@@ -1,7 +1,7 @@
 apiVersion: 'nais.io/v1alpha1'
 kind: 'Application'
 metadata:
-  name: helse-arbeidsforhold-fihr
+  name: helse-arbeidsforhold-standalone
   namespace: tsm
   labels:
     team: tsm
@@ -14,6 +14,10 @@ spec:
     cpuThresholdPercentage: 50
   ingresses:
     - https://helse-arbeidsforhold.ekstern.dev.nav.no
+  filesFrom:
+    - emptyDir:
+        medium: Memory
+      mountPath: /app/.next/cache
   resources:
     limits:
       cpu: 500m
@@ -25,7 +29,14 @@ spec:
     outbound:
       rules:
         - application: helse-arbeidsforhold-api
+      external:
+        - host: helseid-sts.test.nhn.no
   liveness:
     path: /api/internal/is_alive
   readiness:
     path: /api/internal/is_ready
+  env:
+    - name: NEXTAUTH_URL
+      value: https://helse-arbeidsforhold.ekstern.dev.nav.no
+  envFrom:
+    - secret: helse-arbeidsforhold-standalone-helse-id

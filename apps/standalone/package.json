@@ -3,21 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3001",
+    "dev": "next dev --port 3000",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@navikt/aksel-icons": "^6.13.0",
-    "@navikt/ds-css": "^6.13.0",
-    "@navikt/ds-react": "^6.13.0",
+    "@navikt/aksel-icons": "^6.14.0",
+    "@navikt/ds-css": "^6.14.0",
+    "@navikt/ds-react": "^6.14.0",
     "@repo/ui": "*",
     "autoprefixer": "^10.4.20",
     "next": "^14.2.5",
+    "next-auth": "^5.0.0-beta.20",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tailwindcss": "^3.4.7"
+    "tailwindcss": "^3.4.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.5",

@@ -11,7 +11,7 @@
     ],
     "scripts": {
         "build": "turbo build",
-        "dev": "turbo dev",
+        "dev": "turbo watch dev",
         "lint": "turbo lint",
         "format": "prettier --write \"**/*.{ts,tsx,md}\""
     },
@@ -20,7 +20,7 @@
         "@repo/eslint-config": "*",
         "@repo/typescript-config": "*",
         "prettier": "^3.3.3",
-        "turbo": "^2.0.11"
+        "turbo": "^2.0.12"
     },
     "prettier": "@navikt/eslint-config-teamsykmelding/prettier"
 }

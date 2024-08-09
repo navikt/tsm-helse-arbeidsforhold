@@ -106,6 +106,7 @@ jobs:
     name: deploy standalone-app dev
     environment:
       name: standalone-dev
+      url: https://helse-arbeidsforhold.ekstern.dev.nav.no
     needs: [build-api, build-fihr, build-standalone]
     runs-on: ubuntu-latest
     steps:

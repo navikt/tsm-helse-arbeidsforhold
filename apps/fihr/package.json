@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --port=3001",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@navikt/aksel-icons": "^6.13.0",
-    "@navikt/ds-css": "^6.13.0",
-    "@navikt/ds-react": "^6.13.0",
+    "@navikt/aksel-icons": "^6.14.0",
+    "@navikt/ds-css": "^6.14.0",
+    "@navikt/ds-react": "^6.14.0",
     "@repo/ui": "*",
     "autoprefixer": "^10.4.20",
     "next": "^14.2.5",
