@@ -39,7 +39,6 @@ export function HelseID({ issuer, clientId, privateKey, scopes }: HelseIdProvide
         profile: (profile: HelseIdProfile) => ({
             id: profile['helseid://claims/identity/pid'],
             name: profile.name,
-            email: profile.sub,
         }),
     }
 }

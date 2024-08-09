@@ -9,10 +9,18 @@ export const arbeidsforholdController = new Elysia({
             {
                 fnr: headers['x-fnr'],
                 arbeidsgiver: {
-                    navn: 'Navn på arbeidsgiver',
+                    navn: 'Arbeidsbedrift AS',
                     organisasjonsnummer: '123456789',
                 },
-                stilling: 'Stilling',
+                stilling: 'Medarbeider',
+            },
+            {
+                fnr: headers['x-fnr'],
+                arbeidsgiver: {
+                    navn: 'Helso og Arbeido Inc.',
+                    organisasjonsnummer: '98237123',
+                },
+                stilling: 'Varehusassistent',
             },
         ]
     },

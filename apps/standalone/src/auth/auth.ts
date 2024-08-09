@@ -1,9 +1,9 @@
-import NextAuth from 'next-auth'
+import NextAuth, { NextAuthResult } from 'next-auth'
 
 import { getAuthEnv } from '../env'
 import { getPrivateKey, HelseID } from './HelseIdProvider'
 
-export const { handlers, signIn, signOut } = NextAuth(async () => {
+const nextAuth: NextAuthResult = NextAuth(async () => {
     const authEnv = getAuthEnv()
 
     return {
@@ -17,5 +17,16 @@ export const { handlers, signIn, signOut } = NextAuth(async () => {
                 scopes: ['helseid://scopes/identity/pid'],
             }),
         ],
+        callbacks: {
+            // Login all unauthenticated users
+            authorized: async ({ auth }) => !!auth,
+        },
     }
 })
+
+const signIn: NextAuthResult['signIn'] = nextAuth.signIn
+const signOut: NextAuthResult['signOut'] = nextAuth.signOut
+const auth: NextAuthResult['auth'] = nextAuth.auth
+const handlers = nextAuth.handlers
+
+export { signIn, signOut, auth, handlers }
