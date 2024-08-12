@@ -20,11 +20,16 @@ export function HelseID({ issuer, clientId, privateKey, scopes }: HelseIdProvide
         sub: string
         auth_time: number
         idp: string
-        'helseid://claims/identity/pid': string
         name: string
         given_name: string
         middle_name: string
         family_name: string
+        'helseid://claims/identity/pid': string
+        'helseid://scopes/identity/pid_pseudonym': string
+        'helseid://scopes/identity/assurance_level': string
+        'helseid://scopes/identity/security_level': string
+        'helseid://scopes/identity/network': string
+        'helseid://scopes/hpr/hpr_number': string
     }
 
     return {

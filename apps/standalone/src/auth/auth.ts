@@ -30,19 +30,12 @@ const nextAuth: NextAuthResult = NextAuth(async () => {
                 privateKey: await getPrivateKey(authEnv.AUTH_PRIVATE_JWK),
                 scopes: [
                     'helseid://scopes/identity/pid',
-                    'offline_access',
                     'helseid://scopes/identity/pid_pseudonym',
                     'helseid://scopes/identity/assurance_level',
                     'helseid://scopes/identity/security_level',
                     'helseid://scopes/identity/network',
                     'helseid://scopes/hpr/hpr_number',
-                    /*
-                    'helseid://scopes/client/info',
-                    'helseid://scopes/client/client_name',
-                    'nhn:tillitsrammeverk:parameters',
-                    'nhn:sfm:journal-id',
-                    */
-                ],
+                ] as const,
             }),
         ],
         callbacks: {
