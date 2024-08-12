@@ -2,6 +2,7 @@ import NextAuth, { NextAuthResult } from 'next-auth'
 
 import { getAuthEnv } from '../env'
 import { getPrivateKey, HelseID } from './HelseIdProvider'
+import { logger } from '@navikt/next-logger'
 
 const nextAuth: NextAuthResult = NextAuth(async () => {
     const authEnv = getAuthEnv()
@@ -9,6 +10,11 @@ const nextAuth: NextAuthResult = NextAuth(async () => {
     return {
         debug: true,
         trustHost: true,
+        logger: {
+            warn: (code) => logger.warn(`authjs: warning: ${code}`),
+            error: (error) => logger.error(error),
+            debug: (message, metadata) => logger.debug(`authjs: ${message}, ${JSON.stringify(metadata)}`),
+        },
         providers: [
             HelseID({
                 issuer: authEnv.AUTH_ISSUER,
