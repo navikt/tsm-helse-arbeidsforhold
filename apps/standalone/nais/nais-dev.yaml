@@ -14,6 +14,9 @@ spec:
     cpuThresholdPercentage: 50
   ingresses:
     - https://helse-arbeidsforhold.ekstern.dev.nav.no
+  azure:
+    application:
+      enabled: true
   filesFrom:
     - emptyDir:
         medium: Memory

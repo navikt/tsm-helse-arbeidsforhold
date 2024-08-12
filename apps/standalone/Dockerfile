@@ -2,7 +2,7 @@ FROM gcr.io/distroless/nodejs20-debian11@sha256:917c4e6b60fd05d4e54b5e7165371a53
 
 WORKDIR /app
 
-COPY package.json /app/
+COPY next-logger.config.js /app/
 COPY .next/standalone/node_modules /app/node_modules
 COPY .next/standalone/apps/standalone /app/
 COPY .next/static /app/.next/static
