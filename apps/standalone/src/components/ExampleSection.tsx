@@ -11,6 +11,10 @@ async function ExampleSection(): Promise<ReactElement> {
                 HelseID Innlogging Test
             </Heading>
             <BodyShort>Du er logget inn som bruker {session?.user?.name}</BodyShort>
+            <Heading level="2" size="small">
+                Her er andre ting
+            </Heading>
+            <pre>{JSON.stringify(session, null, 2)}</pre>
         </div>
     )
 }

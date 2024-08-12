@@ -1,8 +1,16 @@
-import NextAuth, { NextAuthResult } from 'next-auth'
+import NextAuth, { DefaultSession, NextAuthResult } from 'next-auth'
 
 import { getAuthEnv } from '../env'
 import { getPrivateKey, HelseID } from './HelseIdProvider'
 import { logger } from '@navikt/next-logger'
+
+declare module 'next-auth' {
+    interface Session {
+        user: {
+            securityLevel: string
+        } & DefaultSession['user']
+    }
+}
 
 const nextAuth: NextAuthResult = NextAuth(async () => {
     const authEnv = getAuthEnv()
@@ -20,10 +28,40 @@ const nextAuth: NextAuthResult = NextAuth(async () => {
                 issuer: authEnv.AUTH_ISSUER,
                 clientId: authEnv.AUTH_CLIENT_ID,
                 privateKey: await getPrivateKey(authEnv.AUTH_PRIVATE_JWK),
-                scopes: ['helseid://scopes/identity/pid'],
+                scopes: [
+                    'helseid://scopes/identity/pid',
+                    'offline_access',
+                    'helseid://scopes/identity/pid_pseudonym',
+                    'helseid://scopes/identity/assurance_level',
+                    'helseid://scopes/identity/security_level',
+                    'helseid://scopes/identity/network',
+                    'helseid://scopes/hpr/hpr_number',
+                    /*
+                    'helseid://scopes/client/info',
+                    'helseid://scopes/client/client_name',
+                    'nhn:tillitsrammeverk:parameters',
+                    'nhn:sfm:journal-id',
+                    */
+                ],
             }),
         ],
         callbacks: {
+            jwt: async ({ token, ...rest }) => {
+                if (rest.trigger === 'signIn') {
+                    token.securityLevel = rest.profile?.['helseid://claims/identity/security_level'] ?? 'unknown'
+                }
+
+                return token
+            },
+            session: async ({ session, token, user, trigger }) => {
+                return {
+                    ...session,
+                    user: {
+                        ...session.user,
+                        securityLevel: token.securityLevel,
+                    },
+                }
+            },
             // Login all unauthenticated users
             authorized: async ({ auth }) => !!auth,
         },

@@ -36,10 +36,13 @@ export function HelseID({ issuer, clientId, privateKey, scopes }: HelseIdProvide
         client: { token_endpoint_auth_method: 'private_key_jwt' },
         token: { clientPrivateKey: privateKey },
         authorization: { params: { scope: `openid profile ${scopes.join(' ')}` } },
-        profile: (profile: HelseIdProfile) => ({
-            id: profile['helseid://claims/identity/pid'],
-            name: profile.name,
-        }),
+
+        profile: (profile: HelseIdProfile) => {
+            return {
+                id: profile['helseid://claims/identity/pid'],
+                name: profile.name,
+            }
+        },
     }
 }
 

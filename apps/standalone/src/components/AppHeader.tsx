@@ -1,5 +1,5 @@
 import React, { ReactElement, Suspense } from 'react'
-import { auth } from '../auth/auth'
+import { auth, signOut } from '../auth/auth'
 import { BodyShort, Detail } from '@navikt/ds-react'
 
 function AppHeader(): ReactElement {
@@ -22,6 +22,14 @@ async function LoggedInUser(): Promise<ReactElement> {
         <div className="text-right">
             <Detail>Logget inn som</Detail>
             <BodyShort>{session?.user?.name ?? 'Ukjent bruker'}</BodyShort>
+            <form
+                action={async () => {
+                    'use server'
+                    await signOut()
+                }}
+            >
+                <button type="submit">Sign Out</button>
+            </form>
         </div>
     )
 }
