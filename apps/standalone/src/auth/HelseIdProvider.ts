@@ -1,3 +1,4 @@
+import { logger } from '@navikt/next-logger'
 import type { Provider } from 'next-auth/providers'
 
 type HelseIdProvider = {

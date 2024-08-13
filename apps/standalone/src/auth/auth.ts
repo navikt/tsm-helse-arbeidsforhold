@@ -9,6 +9,7 @@ declare module 'next-auth' {
         user: {
             securityLevel: string
         } & DefaultSession['user']
+        token: string
     }
 }
 
@@ -39,8 +40,9 @@ const nextAuth: NextAuthResult = NextAuth(async () => {
             }),
         ],
         callbacks: {
-            jwt: async ({ token, ...rest }) => {
+            jwt: async ({ token, account, ...rest }) => {
                 if (rest.trigger === 'signIn') {
+                    token.accessToken = account?.access_token
                     token.securityLevel = rest.profile?.['helseid://claims/identity/security_level'] ?? 'unknown'
                 }
 
@@ -49,6 +51,7 @@ const nextAuth: NextAuthResult = NextAuth(async () => {
             session: async ({ session, token, user, trigger }) => {
                 return {
                     ...session,
+                    token: token.accessToken,
                     user: {
                         ...session.user,
                         securityLevel: token.securityLevel,
