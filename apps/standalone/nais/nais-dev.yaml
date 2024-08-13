@@ -32,6 +32,8 @@ spec:
     outbound:
       rules:
         - application: helse-arbeidsforhold-api
+        - application: syfohelsenettproxy
+          namespace: teamsykmelding
       external:
         - host: helseid-sts.test.nhn.no
   liveness:
